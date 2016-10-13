@@ -36,9 +36,9 @@ class Cupcake(models.Model):
 
 	name = models.CharField(max_length=250)
 	#flavor = models.ForeignKey(Flavor) #models.PositiveIntegerField(choices=FLAVOR_TYPE_CHOICES)
-	icing = models.ForeignKey(Icing)
-	topping = models.ForeignKey(Topping)
-	price = models.DecimalField(max_digits=5, decimal_places=2)
+	icing = models.ForeignKey(Icing, default=0)
+	topping = models.ForeignKey(Topping, default=0)
+	price = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 	stock = models.PositiveIntegerField(default=0)
 	created_by = models.ForeignKey(User, related_name='created_by')
 	created_on = models.DateTimeField(auto_now_add=True, verbose_name="Created date")
@@ -50,7 +50,7 @@ class Cupcake(models.Model):
 
 class hasFlavor(models.Model):
 	cupcake = models.ForeignKey(Cupcake)
-	flavor = models.ForeignKey(Flavor)
+	flavor = models.ForeignKey(Flavor, default=0)
 
 	def __unicode__(self):
 		return "Flavor"

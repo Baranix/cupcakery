@@ -20,7 +20,7 @@ class CupcakeAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None, {'fields': ['name']}),
 		("Inventory", {'fields': ['stock', 'price']}),
-		("Flavoring", {'fields': ['icing', 'topping']})
+		("Extras", {'fields': ['icing', 'topping']})
 	]
 
 	def edited(self, obj):
