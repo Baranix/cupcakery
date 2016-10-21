@@ -54,3 +54,23 @@ class hasFlavor(models.Model):
 
 	def __unicode__(self):
 		return "Flavor"
+
+class Cart(models.Model):
+	user = models.ForeignKey(User)
+	item = models.ForeignKey(Cupcake)
+	quantity = models.PositiveIntegerField(default=1)
+
+class Record(models.Model):
+	cart = models.PositiveIntegerField()
+	user = models.ForeignKey(User)
+	item = models.ForeignKey(Cupcake)
+	quantity = models.PositiveIntegerField(default=1)
+
+class TransactionStatus(models.Model):
+	record = models.ForeignKey(Record)
+	paid = models.BooleanField(default=False)
+	transaction_cancelled = models.BooleanField(default=False)
+	enroute = models.BooleanField(default=False)
+	checkout_date = models.DateTimeField(auto_now_add=True)
+	paid_date = models.DateTimeField(auto_now=True, null=True)
+	product_received_date = models.DateTimeField(auto_now=True, null=True)
